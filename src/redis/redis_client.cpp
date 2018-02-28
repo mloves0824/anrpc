@@ -11,26 +11,15 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
- 
+
 // Author: chenbang@antalk.com
 
-#ifndef _REDIS_CLIENT_H_
-#define _REDIS_CLIENT_H_
-
-#include <memory>
-#include <string>
+#include "redis_client.h"
 
 namespace anrpc {
 namespace redis {
 
-//redis 客户端命令操作类的纯虚父类
-class RedisClient {
-public:
-    RedisClient();
+RedisClient::RedisClient() {}
 
-};
-
-typedef std::shared_ptr<RedisClient> RedisClientPtr;
-}}
-
-#endif
+}
+}

@@ -26,7 +26,7 @@ class RedisResult {
 public:
     RedisResult();
     virtual ~RedisResult();
-}
+};
 
 typedef std::shared_ptr<RedisResult> RedisResultPtr;
 
