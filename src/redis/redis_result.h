@@ -14,23 +14,24 @@
  
 // Author: chenbang@antalk.com
 
-#ifndef _REDIS_CLIENT_H_
-#define _REDIS_CLIENT_H_
+#ifndef _REDIS_RESULT_H_
+#define _REDIS_RESULT_H_
 
 #include <memory>
-#include <string>
 
 namespace anrpc {
 namespace redis {
 
-//redis 客户端命令操作类的纯虚父类
-class RediClient {
+class RedisResult {
 public:
-    RedisClient();
+    RedisResult();
+    virtual ~RedisResult();
+}
 
-};
+typedef std::shared_ptr<RedisResult> RedisResultPtr;
 
-typedef std::shared_ptr<RedisClient> RedisClientPtr;
-}}
+}
+}
+
 
 #endif

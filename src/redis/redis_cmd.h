@@ -17,14 +17,32 @@
 #ifndef _REDIS_CMD_H_
 #define _REDIS_CMD_H_
 
+#include "redis_client.h"
+#include "redis_result.h"
+
 namespace anrpc {
 namespace redis {
 
 //redis 客户端命令操作类的纯虚父类
 class RedisCmd {
 public:
+    //缺省的构造函数，如果使用此构造函数初始化类对象，则必须调用 set_client 或
+    //set_cluster 设置 redis 客户端命令类对象的通讯方式。
     RedisCmd();
+    
+    //当使用非集群模式时的构造函数，可以使用此构造函数设置 redis 通信类对象
+    RedisCmd(RedisClientPtr client);
 
+    ~RedisCmd();
+
+    //将连接对象与命令操作对象绑定
+    SetClient(RedisClientPtr client);
+
+protected:
+    const RedisResultPtr Run();
+        
+private:
+    RedisClientPtr client_;
 };
 
 
