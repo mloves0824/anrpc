@@ -31,11 +31,11 @@ void RedisCmd::SetClient(RedisClientPtr client) {
 	client_ = client;
 }
 
-const RedisResultPtr RedisCmd::Run() {
-	RedisResultPtr result(new RedisResult);
-
-
-
+RedisResultPtr RedisCmd::Run(const RedisReq& req) {
+	if (client_) {
+		client_->Run();
+	}
+    return RedisResultPtr();
 }
 
 }

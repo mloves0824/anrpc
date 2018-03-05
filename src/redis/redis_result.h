@@ -18,17 +18,34 @@
 #define _REDIS_RESULT_H_
 
 #include <memory>
+#include <vector>
 
 namespace anrpc {
 namespace redis {
 
-class RedisResult {
+#define REDIS_REPLY_STRING 1
+#define REDIS_REPLY_ARRAY 2
+#define REDIS_REPLY_INTEGER 3
+#define REDIS_REPLY_NIL 4
+#define REDIS_REPLY_STATUS 5
+#define REDIS_REPLY_ERROR 6
+
+class RedisResult;
+typedef std::shared_ptr<RedisResult> RedisResultPtr;
+
+class RedisResult {//TODO:支持hiredis/acl/brpc/pebble
 public:
     RedisResult();
     virtual ~RedisResult();
+
+private:
+    //TODO：内存优化
+	unsigned char type_;
+	std::string str_;
+	long long integer_;
+	std::vector<RedisResultPtr> elements_;
 };
 
-typedef std::shared_ptr<RedisResult> RedisResultPtr;
 
 }
 }

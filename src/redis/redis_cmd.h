@@ -19,6 +19,7 @@
 
 #include "redis_client.h"
 #include "redis_result.h"
+#include "redis_req.h"
 
 namespace anrpc {
 namespace redis {
@@ -33,13 +34,13 @@ public:
     //当使用非集群模式时的构造函数，可以使用此构造函数设置 redis 通信类对象
 	RedisCmd(RedisClientPtr client);
 
-    ~RedisCmd();
+    virtual ~RedisCmd();
 
     //将连接对象与命令操作对象绑定
     void SetClient(RedisClientPtr client);
 
 protected:
-    const RedisResultPtr Run();
+    RedisResultPtr Run(const RedisReq& req);
         
 private:
     RedisClientPtr client_;
